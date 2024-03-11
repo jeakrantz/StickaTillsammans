@@ -61,10 +61,32 @@ namespace StickaTillsammans.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Text,ImageName,CategoryId")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,Title,Text,ImageFile,CategoryId")] Post post)
         {
             if (ModelState.IsValid)
             {
+
+                if (post.ImageFile != null)
+                {
+                    //Skapa unikt namn
+                    string fileName = Path.GetFileNameWithoutExtension(post.ImageFile.FileName);
+                    string extension = Path.GetExtension(post.ImageFile.FileName);
+
+                    post.ImageName = fileName = fileName.Replace(" ", String.Empty) + DateTime.Now.ToString("yymmssfff") + extension;
+
+                    string path = Path.Combine(wwwRootPath + "/images", fileName);
+
+                    // Spara i filsystemet
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await post.ImageFile.CopyToAsync(fileStream);
+                    }
+                }
+                else
+                {
+                    post.ImageName = "placeholder.jpg";
+                }
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -95,7 +117,7 @@ namespace StickaTillsammans.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Text,ImageName,CategoryId")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Text,ImageName,ImageFile,CategoryId")] Post post)
         {
             if (id != post.Id)
             {
@@ -106,6 +128,33 @@ namespace StickaTillsammans.Controllers
             {
                 try
                 {
+                    if (post.ImageFile != null)
+                    {
+                        post.ImageName = " ";
+
+                        //Skapa unikt namn
+                        string fileName = Path.GetFileNameWithoutExtension(post.ImageFile.FileName);
+                        string extension = Path.GetExtension(post.ImageFile.FileName);
+
+                        post.ImageName = fileName = fileName.Replace(" ", String.Empty) + DateTime.Now.ToString("yymmssfff") + extension;
+
+                        string path = Path.Combine(wwwRootPath + "/images", fileName);
+
+                        // Spara i filsystemet
+                        using (var fileStream = new FileStream(path, FileMode.Create))
+                        {
+                            await post.ImageFile.CopyToAsync(fileStream);
+                        }
+                    }
+                    else if (post.ImageName == null && post.ImageFile == null)
+                    {
+                        post.ImageName = "placeholder.jpg";
+                    } 
+                    else 
+                    {
+                        post.ImageName = post.ImageName;
+                    }
+
                     _context.Update(post);
                     await _context.SaveChangesAsync();
                 }
