@@ -29,6 +29,24 @@ public class HomeController : Controller
         var dataCourse = _context.Courses.Include(_ => _.Participants).ToListAsync();
         return View(await dataCourse);
     }
+    public IActionResult Offers()
+    {
+        return View();
+    }
+
+    public ActionResult RedirectBuissness()
+    {
+        return Redirect(Url.Action("Offers", "Home") + "#Buisness");
+    }
+    
+    public ActionResult RedirectGiftCard()
+    {
+        return Redirect(Url.Action("Offers", "Home") + "#GiftCard");
+    }
+    public ActionResult RedirectMembership()
+    {
+        return Redirect(Url.Action("Offers", "Home") + "#Membership");
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

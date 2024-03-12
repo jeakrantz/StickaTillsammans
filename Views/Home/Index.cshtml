@@ -5,11 +5,10 @@
     ViewData["Title"] = "Home Page";
 }
 
-
 <div class="row-container row">
     <div class="col-sm-6 col-md-4">
         <div class="card card-large">
-            <img src="images/HomePageLink1.webp" class="card-img-top" alt="...">
+            <a href="Post"><img src="images/HomePageLink1.webp" class="card-img-top" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Lär dig mer om Stickning</h5>
                 <a href="Post">Läs inlägg <i class="fa-solid fa-arrow-right"></i></a>
@@ -19,7 +18,7 @@
 
     <div class="col-sm-6 col-md-8">
         <div class="card card-large">
-            <img src="images/HomePageLink2.webp" class="card-img-top" alt="...">
+            <a href="Course"><img src="images/HomePageLink2.webp" class="card-img-top" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Vi har workshops som passar för alla!</h5>
                 <a href="Course">Se workshops <i class="fa-solid fa-arrow-right"></i></a>
@@ -40,25 +39,25 @@
     <div class="row-container row row-cols-1 row-cols-sm-1 row-cols-md-3">
         <div class="col-sm">
             <div class="card">
-                <img src="images/HomePageLink3.webp" class="card-img-top" alt="...">
+                <a href="@Url.Action("RedirectBuissness", "Home")"><img src="images/HomePageLink3.webp" class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                    <a href="#"><h5 class="card-title">Företagsevent <i class="fa-solid fa-arrow-right"></i></h5></a>
+                    <a href="@Url.Action("RedirectBuissness", "Home")><h5 class="card-title">Företagsevent <i class="fa-solid fa-arrow-right"></i></h5></a>
                 </div>
             </div>
         </div>
         <div class="col-sm">
             <div class="card">
-                <img src="images/HomePageLink4.webp" class="card-img-top" alt="...">
+                <a href="@Url.Action("RedirectGiftCard", "Home")"><img src="images/HomePageLink4.webp" class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                    <a href="#"><h5 class="card-title">Presentkort <i class="fa-solid fa-arrow-right"></i></h5></a>
+                    <a href="@Url.Action("RedirectGiftCard", "Home")"><h5 class="card-title">Presentkort <i class="fa-solid fa-arrow-right"></i></h5></a>
                 </div>
             </div>
         </div>
         <div class="col-sm">
             <div class="card">
-                <img src="images/HomePageLink5.webp" class="card-img-top" alt="...">
+                <a href="@Url.Action("RedirectMembership", "Home")"><img src="images/HomePageLink5.webp" class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                    <a href="#"><h5 class="card-title">Medlemskap <i class="fa-solid fa-arrow-right"></i></h5></a>
+                    <a href="@Url.Action("RedirectMembership", "Home")"><h5 class="card-title">Medlemskap <i class="fa-solid fa-arrow-right"></i></h5></a>
                 </div>
             </div>
         </div>
@@ -72,7 +71,7 @@
         {
             <div class="col">
                 <div class="card">
-                    <img src="images/@item.ImageName" class="card-img-top" alt="...">
+                    <a asp-controller="Course" asp-action="Details" asp-route-id="@item.Id"><img src="images/@item.ImageName" class="card-img-top" alt="..."></a>
                     <div class="card-body">
                         <h5 class="card-title">@item.Title</h5>
                         <a asp-controller="Course" asp-action="Details" asp-route-id="@item.Id">Boka workshop <i class="fa-solid fa-arrow-right"></i></a>

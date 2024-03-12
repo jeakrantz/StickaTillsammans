@@ -51,10 +51,8 @@
                 </div>
             </div>
         </div>
-        <h1>StickaTillsammans</h1>
-        <div>
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+        <a asp-controller="Home" asp-action="Index"><h1>StickaTillsammans</h1></a>
+<span></span>
     </header>
 
     <main role="main">
@@ -68,6 +66,7 @@
         </div>
         <div class="bottom-footer">
             <p>StickaTillsammans</p>
+            <partial name="_LoginPartial"/>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
