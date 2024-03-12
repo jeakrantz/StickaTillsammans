@@ -1,8 +1,103 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc
+@model IEnumerable<StickaTillsammans.Models.Course>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="row-container row">
+    <div class="col-sm-6 col-md-4">
+        <div class="card card-large">
+            <img src="images/HomePageLink1.webp" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Lär dig mer om Stickning</h5>
+                <a href="Post">Läs inlägg <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-8">
+        <div class="card card-large">
+            <img src="images/HomePageLink2.webp" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Vi har workshops som passar för alla!</h5>
+                <a href="Course">Se workshops <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Hantverka tillsammans</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias porro voluptas sequi dolore velit
+        saepe, vero quis quae enim, ea atque laboriosam praesentium, pariatur accusantium! Dolorem non tempora
+        ratione officia.</p>
+</div>
+
+<div class="full-width-container">
+    <h2>Mer av det vi erbjuder</h2>
+    <div class="row-container row row-cols-1 row-cols-sm-1 row-cols-md-3">
+        <div class="col-sm">
+            <div class="card">
+                <img src="images/HomePageLink3.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a href="#"><h5 class="card-title">Företagsevent <i class="fa-solid fa-arrow-right"></i></h5></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card">
+                <img src="images/HomePageLink4.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a href="#"><h5 class="card-title">Presentkort <i class="fa-solid fa-arrow-right"></i></h5></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card">
+                <img src="images/HomePageLink5.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a href="#"><h5 class="card-title">Medlemskap <i class="fa-solid fa-arrow-right"></i></h5></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Våra workshops</h2>
+    <div class="row-container row row-cols-1 row-cols-sm-2 row-cols-md-3">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card">
+                    <img src="images/@item.ImageName" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <a asp-controller="Course" asp-action="Details" asp-route-id="@item.Id">Boka workshop <i class="fa-solid fa-arrow-right"></i></a>
+                        @{
+                            var i = 0;
+                        foreach(var p in item.Participants)
+                        {
+                            i = i + Convert.ToInt32(@p.Spots);
+                        }
+                        
+                        var r = @item.Spots - i;
+
+                        if (r <= 0){
+                        <div class="remaining-spots filled">
+                            Fullsatt
+                            </div>
+                        } else {
+                        <div class="remaining-spots">
+                            @r kvar
+                            </div>
+                        }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>

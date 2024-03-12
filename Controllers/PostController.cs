@@ -149,8 +149,8 @@ namespace StickaTillsammans.Controllers
                     else if (post.ImageName == null && post.ImageFile == null)
                     {
                         post.ImageName = "placeholder.jpg";
-                    } 
-                    else 
+                    }
+                    else
                     {
                         post.ImageName = post.ImageName;
                     }

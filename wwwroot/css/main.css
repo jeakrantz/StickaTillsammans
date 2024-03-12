@@ -110,6 +110,10 @@ main {
     margin: .5em;
 }
 
+.filled {
+    background-color: #2b2b2b;
+}
+
 footer p {
     color: white;
 }
