@@ -1,11 +1,11 @@
 @model StickaTillsammans.Models.Course
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Skapa ny kurs";
 }
 
 <div class="container">
-<h2>Skapa ny kurs</h2>
+<h2>@ViewData["Title"]</h2>
 <div class="row align-items-center justify-content-center">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">

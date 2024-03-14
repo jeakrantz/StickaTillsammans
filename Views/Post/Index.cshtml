@@ -1,13 +1,16 @@
 @model IEnumerable<StickaTillsammans.Models.Post>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inlägg Admin";
 }
 <div class="container">
-<h1>Index</h1>
+<h1>Inlägg Admin</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
+</p>
+<p>
+    <a asp-controller="Category" asp-action="Index">Se kategorier</a>
 </p>
 <table class="table">
     <thead>
