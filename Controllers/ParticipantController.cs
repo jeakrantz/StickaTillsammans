@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using StickaTillsammans.Data;
 using StickaTillsammans.Models;
 
@@ -60,11 +61,12 @@ namespace StickaTillsammans.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Email,Tel,Spots,CourseId")] Participant participant)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(participant);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("DetailsPublic", "Course", new { id = participant.CourseId });
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", participant.CourseId);
             return View(participant);
@@ -118,7 +120,7 @@ namespace StickaTillsammans.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Course", new { id = participant.CourseId });
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", participant.CourseId);
             return View(participant);
@@ -156,7 +158,7 @@ namespace StickaTillsammans.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Course", new { id = participant.CourseId });
         }
 
         private bool ParticipantExists(int id)

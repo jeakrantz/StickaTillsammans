@@ -38,7 +38,7 @@
                         <a asp-controller="Post" asp-action="DetailsPublic" asp-route-id="@item.Id"><img
                                 src="~/images/@item.ImageName" class="card-img-top" alt="..."></a>
                         <div class="card-body">
-                            <a href="@Url.Action("RedirectBuissness", "Home")">
+                            <a asp-controller="Post" asp-action="DetailsPublic" asp-route-id="@item.Id">
                                 <h5 class="card-title">@item.Title <i class="fa-solid fa-arrow-right"></i></h5>
                             </a>
                         </div>

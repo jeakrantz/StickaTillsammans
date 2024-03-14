@@ -39,6 +39,10 @@ header {
     border-bottom: 1px solid lightgray;
 }
 
+.menu-icon svg {
+    font-size: 1.5em;
+}
+
 header h1 {
     text-align: center;
 }
@@ -142,6 +146,7 @@ footer {
     width: 100%;
     padding: 2em;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -179,6 +184,15 @@ footer {
     border: #9c6d00;
 }
 
+.btn {
+    width: fit-content;
+    margin: 1em auto;
+}
+
+.logout-btn {
+    margin: 0;
+}
+
 input {
     margin-bottom: 1em;
 }
@@ -194,4 +208,17 @@ input[type="submit"]{
 
 .text-light {
     color: #f0efea;
+}
+
+.nav-link:hover, header .logout-btn:hover {
+    color: #5f9ea0!important;
+}
+
+footer .nav-link:hover, footer a:hover, footer .logout-btn:hover {
+    color: #E29E00!important;
+}
+
+svg {
+    margin-right: .5em;
+    margin-left: .5em;
 }

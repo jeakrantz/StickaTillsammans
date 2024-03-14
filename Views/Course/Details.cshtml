@@ -55,6 +55,8 @@
                     <img class="img-fluid" src="/images/@Html.DisplayFor(model => model.ImageName)">
                 </dd>
             </div>
+            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen"></i>
+                Redigera detaljer</a>
             <hr />
             <h3>
                 @Html.DisplayNameFor(model => model.Participants)
@@ -65,23 +67,27 @@
                     <th>Epost</th>
                     <th>Telefon</th>
                     <th>Kursplatser</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     @foreach (var p in Model.Participants)
                     {
-                    <tr>
-                        <td>@p.Name</td>
-                        <td>@p.Email</td>
-                        <td>@p.Tel</td>
-                        <td>@p.Spots</td>
-                    </tr>
+                        <tr>
+                            <td>@p.Name</td>
+                            <td>@p.Email</td>
+                            <td>@p.Tel</td>
+                            <td>@p.Spots</td>
+                            <td>
+                                <a asp-controller="Participant" asp-action="Edit" asp-route-id="@p.Id"><i class="fa-solid fa-pen"></i> Redigera</a> |
+                                <a asp-controller="Participant" asp-action="Delete" asp-route-id="@p.Id"><i class="fa-solid fa-trash"></i> Ta bort</a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
         </dl>
     </div>
     <div>
-        <a asp-action="Index"><i class="fa-solid fa-arrow-left"></i> Tillbaka till listan</a> | 
-        <a asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen"></i> Redigera</a>
+        <a asp-action="Index"><i class="fa-solid fa-arrow-left"></i> Tillbaka till listan</a> |
     </div>
 </div>
