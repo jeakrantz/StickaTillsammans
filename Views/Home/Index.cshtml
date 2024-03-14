@@ -29,35 +29,47 @@
 
 <div class="container">
     <h2>Hantverka tillsammans</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias porro voluptas sequi dolore velit
-        saepe, vero quis quae enim, ea atque laboriosam praesentium, pariatur accusantium! Dolorem non tempora
-        ratione officia.</p>
+    <p>Att hantverka tillsammans är inte bara att skapa vackra föremål, det är också en möjlighet att knyta starka band
+        och dela kreativa ögonblick med nära och kära. <br/>
+        Genom att dela erfarenheter och kunskap kan vi inspirera varandra
+        och växa både som hantverkare och som människor. <br/>
+        Tillsammans skapar vi inte bara konstverk, utan också minnen
+        och relationer som varar livet ut.</p>
 </div>
 
 <div class="full-width-container">
     <h2>Mer av det vi erbjuder</h2>
     <div class="row-container row row-cols-1 row-cols-sm-1 row-cols-md-3">
-        <div class="col-sm">
+        <div class="col-sm ">
             <div class="card">
-                <a href="@Url.Action("RedirectBuissness", "Home")"><img src="images/HomePageLink3.webp" class="card-img-top" alt="..."></a>
+                <a href="@Url.Action("RedirectBuissness", "Home")"><img src="images/HomePageLink3.webp"
+                        class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                    <a href="@Url.Action("RedirectBuissness", "Home")"><h5 class="card-title">Företagsevent <i class="fa-solid fa-arrow-right"></i></h5></a>
+                    <a href="@Url.Action("RedirectBuissness", "Home")">
+                        <h5 class="card-title">Företagsevent <i class="fa-solid fa-arrow-right"></i></h5>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="col-sm">
             <div class="card">
-                <a href="@Url.Action("RedirectGiftCard", "Home")"><img src="images/HomePageLink4.webp" class="card-img-top" alt="..."></a>
+                <a href="@Url.Action("RedirectGiftCard", "Home")"><img src="images/HomePageLink4.webp"
+                        class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                    <a href="@Url.Action("RedirectGiftCard", "Home")"><h5 class="card-title">Presentkort <i class="fa-solid fa-arrow-right"></i></h5></a>
+                    <a href="@Url.Action("RedirectGiftCard", "Home")">
+                        <h5 class="card-title">Presentkort <i class="fa-solid fa-arrow-right"></i></h5>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="col-sm">
             <div class="card">
-                <a href="@Url.Action("RedirectMembership", "Home")"><img src="images/HomePageLink5.webp" class="card-img-top" alt="..."></a>
+                <a href="@Url.Action("RedirectMembership", "Home")"><img src="images/HomePageLink5.webp"
+                        class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                    <a href="@Url.Action("RedirectMembership", "Home")"><h5 class="card-title">Medlemskap <i class="fa-solid fa-arrow-right"></i></h5></a>
+                    <a href="@Url.Action("RedirectMembership", "Home")">
+                        <h5 class="card-title">Medlemskap <i class="fa-solid fa-arrow-right"></i></h5>
+                    </a>
                 </div>
             </div>
         </div>
@@ -71,28 +83,33 @@
         {
             <div class="col">
                 <div class="card">
-                    <a asp-controller="Course" asp-action="Details" asp-route-id="@item.Id"><img src="images/@item.ImageName" class="card-img-top" alt="..."></a>
+                    <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id"><img
+                            src="images/@item.ImageName" class="card-img-top" alt="..."></a>
                     <div class="card-body">
                         <h5 class="card-title">@item.Title</h5>
-                        <a asp-controller="Course" asp-action="Details" asp-route-id="@item.Id">Boka workshop <i class="fa-solid fa-arrow-right"></i></a>
+                        <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id">Boka workshop <i
+                                class="fa-solid fa-arrow-right"></i></a>
                         @{
                             var i = 0;
-                        foreach(var p in item.Participants)
-                        {
-                            i = i + Convert.ToInt32(@p.Spots);
-                        }
-                        
-                        var r = @item.Spots - i;
+                            foreach (var p in item.Participants)
+                            {
+                                i = i + Convert.ToInt32(@p.Spots);
+                            }
 
-                        if (r <= 0){
-                        <div class="remaining-spots filled">
-                            Fullsatt
-                            </div>
-                        } else {
-                        <div class="remaining-spots">
-                            @r kvar
-                            </div>
-                        }
+                            var r = @item.Spots - i;
+
+                            if (r <= 0)
+                            {
+                                <div class="remaining-spots filled">
+                                    Fullsatt
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="remaining-spots">
+                                    @r kvar
+                                </div>
+                            }
                         }
                     </div>
                 </div>

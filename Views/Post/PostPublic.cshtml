@@ -7,13 +7,25 @@
     <h2>Läs inlägg om stickning</h2>
     @foreach (var item in Model)
     {
-        <a asp-action="Details" asp-route-id="@item.Id">
+        <a asp-action="DetailsPublic" asp-route-id="@item.Id">
+        <h3>@item.Title</h3>
+        <p class="center">@item.Category.Name</p>
             <div class="d-flex">
                 <img class="img-fluid" src="~/images/@item.ImageName" alt="...">
             </div>
         </a>
-        <h3>@item.Title</h3>
-        <p>@item.Category.Name</p>
-        <p>@item.Text</p>
+        <p>
+            @* Kortar ner texten som syns *@
+            @if (item.Text.Length > 200)
+            {
+                @item.Text.Substring(0, 200);
+            }
+            else
+            {
+                @item.Text
+            }
+            ...
+        </p>
+        <hr/>
     }
 </div>

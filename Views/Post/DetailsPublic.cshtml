@@ -1,0 +1,24 @@
+@model StickaTillsammans.Models.Post
+
+@{
+    ViewData["Title"] = @Html.DisplayFor(model => model.Title);
+}
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+
+    <p class="center">
+        @Html.DisplayFor(model => model.Category.Name)
+    </p>
+    <hr />
+
+
+    <div class="d-flex">
+        <img class="img-fluid" src="/images/@Html.DisplayFor(model => model.ImageName)">
+    </div>
+
+    <p>
+        @Html.DisplayFor(model => model.Text)
+    </p>
+
+
+</div>

@@ -4,55 +4,68 @@
     ViewData["Title"] = "Inlägg Admin";
 }
 <div class="container">
-<h1>Inlägg Admin</h1>
+    <h2>@ViewData["Title"]</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<p>
-    <a asp-controller="Category" asp-action="Index">Se kategorier</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Text)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="center">
+    <a class="btn btn-primary" asp-controller="Category" asp-action="Index">Se kategorier</a>
+</div>
+    <p>
+        Här syns alla inlägg. Det går att se alla detaljer för specifika inlägg genom att klicka på inläggets titel.
+        Alla inlägg går att redigera eller ta bort.<br/>
+        Under tabellen går det att skapa ett nytt inlägg. 
+    </p>
+
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Text)
-                </td>
-                <td>
-                    <img height="50px" src="images/@Html.DisplayFor(modelItem => item.ImageName)">
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Id)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @* Kortar ner texten som syns *@
+                        @if (item.Text.Length > 40)
+                        {
+                            @item.Text.Substring(0,40);
+                        }
+                        else 
+                        {
+                            @item.Text
+                        }
+                        ... 
+                    </td>
+                    <td>
+                        <img height="50px" src="images/@Html.DisplayFor(modelItem => item.ImageName)">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen"></i> Redigera</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i> Ta bort</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary" asp-action="Create">Skapa nytt inlägg <i class="fa-solid fa-plus"></i></a>
+
 </div>
