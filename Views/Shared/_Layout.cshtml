@@ -55,7 +55,11 @@
                                     class="fa-solid fa-store"></i> Erbjudanden</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About"><i
+                                    class="fa-solid fa-circle-info"></i> Om StickaTillsammans</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact"><i
                                     class="fa-solid fa-envelope"></i> Kontakt</a>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
@@ -71,7 +75,7 @@
                             <li class="nav-item">
                                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
                                     asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button type="submit" class="nav-item text-dark">Logga ut</button>
+                                    <button type="submit" class="nav-item text-dark btn">Logga ut</button>
                                 </form>
                             </li>
                         }
@@ -92,11 +96,52 @@
 
     <footer>
         <div class="top-footer">
-            <p>test</p>
+            <h1><i class="fa-regular fa-copyright"></i> StickaTillsammans</1>
         </div>
         <div class="bottom-footer">
-            <p>StickaTillsammans</p>
-            <partial name="_LoginPartial" />
+            <div class="row-container row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                <div class="col-sm">
+                    <h4>Meny</h4>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home"
+                                asp-action="Index">Startsida</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Course"
+                                asp-action="CoursePublic">Boka
+                                workshop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Post"
+                                asp-action="PostPublic">Tips och tricks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home"
+                                asp-action="Offers">Erbjudanden</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">Om
+                                oss</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <h4><a asp-controller="Home" asp-action="Contact" class="text-light"> <i class="fa-regular fa-address-book"></i> Kontakt</a>
+                    </h4>
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i> Stickvägen 10 <br>
+                        123 45 Garntopia
+                    </p>
+                    <p><i class="fa-solid fa-phone"></i><a href="tel:1234567890" class="text-light"> 1234-56 78 90</a>
+                    </p>
+                    <p><i class="fa-regular fa-envelope"></i><a href="mailto:sticka_tillsammans@mail.com"
+                            class="text-light"> sticka_tillsammans@mail.com</a></p>
+                </div>
+                <div class="col-sm">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
