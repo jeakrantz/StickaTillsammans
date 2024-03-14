@@ -1,0 +1,77 @@
+@model IEnumerable<StickaTillsammans.Models.Post>
+@{
+    ViewData["Title"] = "Om StickaTillsammans";
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <p>
+        Välkommen till StickaTillsammans - din plattform för att utforska den underbara världen av stickning och
+        virkning!
+        Vi är passionerade för att främja hantverkets glädje och delar vår kärlek till trådar och nålar genom kurser och
+        föreläsningar som sträcker sig bortom bara att lära sig teknikerna. Hos oss handlar det inte bara om att sticka
+        eller virka, utan även om att skapa, inspireras och vårda våra alster.
+    </p>
+    <div class="d-flex">
+        <img class="img-fluid" src="~/images/HomePageLink2.webp" alt="...">
+    </div>
+    <h3>Vad gör vi?</h3>
+    <p>
+        Vi erbjuder en mångfald av kurser och workshops som passar alla, från nybörjare till avancerade hantverkare.
+        Oavsett
+        om du vill lära dig grunderna, utforska avancerade tekniker eller finjustera din stil, har vi något för dig.
+        Våra
+        erfarna instruktörer är här för att vägleda och inspirera dig genom varje steg av din hantverksresa.
+    </p>
+
+</div>
+<div class="full-width-container">
+    <h2>Tips och tricks</h2>
+    <p class="center">Läs våra inlägg och stickning och virkning.</p>
+    <div class="row-container row row-cols-1 row-cols-sm-1 row-cols-md-3">
+        @{
+            var n = 1;
+            foreach (var item in Model)
+            {
+                <div class="col-sm ">
+                    <div class="card">
+                        <a asp-controller="Post" asp-action="DetailsPublic" asp-route-id="@item.Id"><img
+                                src="~/images/@item.ImageName" class="card-img-top" alt="..."></a>
+                        <div class="card-body">
+                            <a href="@Url.Action("RedirectBuissness", "Home")">
+                                <h5 class="card-title">@item.Title <i class="fa-solid fa-arrow-right"></i></h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                n++;
+                //Visa endast tre inlägg, bryt tråden efter 3.
+                if(n > 3)
+                {
+                    break;
+                }
+            }
+
+        }
+    </div>
+</div>
+<div class="container">
+    <h3>Vad vill vi?</h3>
+    <p>
+        Men StickaTillsammans handlar inte bara om att lära sig hantverket - det handlar också om att skapa gemenskap.
+        Vi
+        tror på kraften i att dela passioner och erfarenheter med likasinnade människor. Våra kurser och föreläsningar
+        fungerar som en plattform där människor kan mötas, utbyta idéer och inspirera varandra. Vår gemenskap sträcker
+        sig
+        bortom bara trådarna och bildar starka band som varar livet ut.
+    </p>
+    <p>
+        Vårt mål är att göra stickning och virkning tillgängligt och roligt för alla. Vi strävar efter att skapa en
+        inkluderande och välkomnande miljö där människor från alla bakgrunder och erfarenhetsnivåer kan känna sig hemma.
+        StickaTillsammans är mer än bara ett företag - det är en rörelse för att sprida glädjen i handgjort skapande och
+        bygga en stark och stödjande gemenskap av hantverkare runt om i världen.
+    </p>
+    <div class="d-flex">
+        <img class="img-fluid" src="~/images/HomePageLink4.webp" alt="...">
+    </div>
+</div>
