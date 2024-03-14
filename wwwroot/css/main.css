@@ -173,3 +173,7 @@ footer p {
     background-color: #9c6d00;
     border: #9c6d00;
 }
+
+input {
+    margin-bottom: 1em;
+}

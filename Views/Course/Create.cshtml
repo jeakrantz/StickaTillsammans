@@ -5,11 +5,8 @@
 }
 
 <div class="container">
-<h1>Create</h1>
-
-<h4>Course</h4>
-<hr />
-<div class="row">
+<h2>Skapa ny kurs</h2>
+<div class="row align-items-center justify-content-center">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -49,14 +46,14 @@
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Skapa kurs" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index"><i class="fa-solid fa-arrow-left"></i> Tillbaka till listan</a>
 </div>
 </div>
 

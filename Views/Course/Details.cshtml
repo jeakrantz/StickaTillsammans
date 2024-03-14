@@ -4,67 +4,84 @@
     ViewData["Title"] = "Details";
 }
 <div class="container">
-<h1>Details</h1>
+    <h2>Kursdetaljer</h2>
 
-<div>
-    <h4>Course</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Time)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Time)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Spots)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Spots)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageName)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="/images/@Html.DisplayFor(model => model.ImageName)">
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Participants)
-        </dt>
-        <dd class="col-sm-10">
-            @foreach (var p in Model.Participants)
-            {
-                <p>@p.Name</p>
-            }
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <hr />
+        <dl class="row">
+            <div class="row col-sm-6">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Title):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Date):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Time):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Time)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Spots):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Spots)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+            </div>
+            <div class="row col-sm-6">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ImageName):
+                </dt>
+                <dd class="col-sm-10">
+                    <img class="img-fluid" src="/images/@Html.DisplayFor(model => model.ImageName)">
+                </dd>
+            </div>
+            <hr />
+            <h3>
+                @Html.DisplayNameFor(model => model.Participants)
+            </h3>
+            <table class="table">
+                <thead>
+                    <th>Namn</th>
+                    <th>Epost</th>
+                    <th>Telefon</th>
+                    <th>Kursplatser</th>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.Participants)
+                    {
+                    <tr>
+                        <td>@p.Name</td>
+                        <td>@p.Email</td>
+                        <td>@p.Tel</td>
+                        <td>@p.Spots</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Index"><i class="fa-solid fa-arrow-left"></i> Tillbaka till listan</a> | 
+        <a asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen"></i> Redigera</a>
+    </div>
 </div>
