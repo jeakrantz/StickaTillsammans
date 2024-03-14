@@ -48,7 +48,7 @@ namespace StickaTillsammans.Controllers
         // GET: Participant/Create
         public IActionResult Create()
         {
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Id");
+            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace StickaTillsammans.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Id", participant.CourseId);
+            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", participant.CourseId);
             return View(participant);
         }
 
@@ -82,7 +82,7 @@ namespace StickaTillsammans.Controllers
             {
                 return NotFound();
             }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Id", participant.CourseId);
+            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", participant.CourseId);
             return View(participant);
         }
 
@@ -118,7 +118,7 @@ namespace StickaTillsammans.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Id", participant.CourseId);
+            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", participant.CourseId);
             return View(participant);
         }
 

@@ -58,7 +58,7 @@ namespace StickaTillsammans.Controllers
         // GET: Post/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -97,7 +97,7 @@ namespace StickaTillsammans.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", post.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
 
@@ -114,7 +114,7 @@ namespace StickaTillsammans.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", post.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
 
@@ -177,7 +177,7 @@ namespace StickaTillsammans.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", post.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
 

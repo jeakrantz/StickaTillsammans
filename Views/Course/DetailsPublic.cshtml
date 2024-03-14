@@ -15,8 +15,8 @@
             <div class="col-sm-4">
                 <h2>@Html.DisplayFor(model => model.Title)</h2>
                 <p>
-                @Html.DisplayFor(model => model.Date)
-                @Html.DisplayFor(model => model.Time)
+                    @Html.DisplayFor(model => model.Date)
+                    @Html.DisplayFor(model => model.Time)
                 </p>
                 <div class="row price">
                     @Html.DisplayFor(model => model.Price) SEK
@@ -40,12 +40,16 @@
                             <div class="remaining-spots">
                                 @r kvar
                             </div>
-                            <a asp-controller="Participant" asp-action="Create">Boka plats  <i class="fa-solid fa-arrow-right"></i></a>
+                            <a asp-controller="Participant" asp-action="Create">Boka plats <i
+                                    class="fa-solid fa-arrow-right"></i></a>
                         }
                     }
                 </div>
-                <h3>@Html.DisplayNameFor(model => model.Description)</h3>
-                <p>@Html.DisplayFor(model => model.Description)</p>
+                @if (@Model.Description != null)
+                {
+                    <h3>@Html.DisplayNameFor(model => model.Description)</h3>
+                    <p>@Html.DisplayFor(model => model.Description)</p>
+                }
             </div>
         </dl>
     </div>
