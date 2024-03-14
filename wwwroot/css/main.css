@@ -55,13 +55,27 @@ main p {
     margin: 1em auto;
 }
 
-h2 {
+h2, h3 {
     text-align: center;
     margin: .5em;
 }
 
+.workshop h2, .workshop h3 {
+    text-align: left;
+    margin-left: 0;
+}
+
+.workshop .row {
+    --bs-gutter-x: 0;
+}
+
+.price {
+    align-items: center;
+    margin: 1em auto;
+}
+
 main {
-    min-height: 80vh;
+    min-height: 70vh;
 }
 
 .container {
@@ -106,6 +120,7 @@ main {
     font-size: small;
     border-radius: 5px;
     width: fit-content;
+    height: fit-content;
     padding: 0 .5em;
     margin: .5em;
 }
@@ -143,4 +158,18 @@ footer p {
     object-position: center;
     object-fit: cover;
     border-radius: 5px;
+}
+
+.workshop .img-fluid {
+    max-height: 60em;
+}
+
+.btn-primary {
+    background-color: #E29E00;
+    border: #E29E00;
+}
+
+.btn-primary:hover {
+    background-color: #9c6d00;
+    border: #9c6d00;
 }

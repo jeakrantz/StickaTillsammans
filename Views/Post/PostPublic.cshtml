@@ -1,0 +1,19 @@
+@model IEnumerable<StickaTillsammans.Models.Post>
+
+@{
+    ViewData["Title"] = "Inlägg";
+}
+<div class="container">
+    <h2>Läs inlägg om stickning</h2>
+    @foreach (var item in Model)
+    {
+        <a asp-action="Details" asp-route-id="@item.Id">
+            <div class="d-flex">
+                <img class="img-fluid" src="~/images/@item.ImageName" alt="...">
+            </div>
+        </a>
+        <h3>@item.Title</h3>
+        <p>@item.Category.Name</p>
+        <p>@item.Text</p>
+    }
+</div>

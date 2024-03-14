@@ -28,9 +28,31 @@ namespace StickaTillsammans.Controllers
         {
             return View(await _context.Courses.ToListAsync());
         }
+        public async Task<IActionResult> CoursePublic()
+        {
+            var dataCourse = _context.Courses.Include(_ => _.Participants).ToListAsync();
+            return View(await dataCourse);
+        }
 
         // GET: Course/Details/5
         public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Courses
+                .Include(_ => _.Participants).Where(m => m.Id == id).FirstOrDefaultAsync(m => m.Id == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View(course);
+        }
+        // GET: Course/Details/5
+        public async Task<IActionResult> DetailsPublic(int? id)
         {
             if (id == null)
             {
@@ -143,8 +165,8 @@ namespace StickaTillsammans.Controllers
                     else if (course.ImageName == null && course.ImageFile == null)
                     {
                         course.ImageName = "placeholder.jpg";
-                    } 
-                    else 
+                    }
+                    else
                     {
                         course.ImageName = course.ImageName;
                     }

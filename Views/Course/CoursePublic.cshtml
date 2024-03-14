@@ -1,0 +1,42 @@
+@model IEnumerable<StickaTillsammans.Models.Course>
+
+@{
+    ViewData["Title"] = "Boka kurs";
+}
+<div class="container">
+<h2>Våra workshop</h2>
+
+    <div class="row-container row row-cols-1 row-cols-sm-2 row-cols-md-3">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card">
+                    <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id"><img src="~/images/@item.ImageName" class="card-img-top" alt="..."></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id">Boka workshop <i class="fa-solid fa-arrow-right"></i></a>
+                        @{
+                            var i = 0;
+                        foreach(var p in item.Participants)
+                        {
+                            i = i + Convert.ToInt32(@p.Spots);
+                        }
+                        
+                        var r = @item.Spots - i;
+
+                        if (r <= 0){
+                        <div class="remaining-spots filled">
+                            Fullsatt
+                            </div>
+                        } else {
+                        <div class="remaining-spots">
+                            @r kvar
+                            </div>
+                        }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

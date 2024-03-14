@@ -29,6 +29,12 @@ namespace StickaTillsammans.Controllers
             var applicationDbContext = _context.Posts.Include(p => p.Category);
             return View(await applicationDbContext.ToListAsync());
         }
+        // GET: Post
+        public async Task<IActionResult> PostPublic()
+        {
+            var applicationDbContext = _context.Posts.Include(p => p.Category);
+            return View(await applicationDbContext.ToListAsync());
+        }
 
         // GET: Post/Details/5
         public async Task<IActionResult> Details(int? id)

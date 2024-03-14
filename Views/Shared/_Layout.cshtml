@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,25 +38,51 @@
                 <div class="offcanvas-body">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Start</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i
+                                    class="fa-solid fa-house-chimney"></i> Startsida</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Course" asp-action="Index">Kurser Admin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-                                asp-action="Index">Kontakt</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Boka
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Course"
+                                asp-action="CoursePublic"><i class="fa-regular fa-calendar-days"></i> Boka
                                 workshop</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="PostPublic"><i
+                                    class="fa-solid fa-clover"></i> Tips och tricks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Offers"><i
+                                    class="fa-solid fa-store"></i> Erbjudanden</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i
+                                    class="fa-solid fa-envelope"></i> Kontakt</a>
+                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Course" asp-action="Index">Kurser
+                                    Admin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Index">Inlägg
+                                    Admin</a>
+                            </li>
+                            <li class="nav-item">
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+                                    asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <button type="submit" class="nav-item text-dark">Logga ut</button>
+                                </form>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
         </div>
-        <a asp-controller="Home" asp-action="Index"><h1>StickaTillsammans</h1></a>
-<span></span>
+        <a asp-controller="Home" asp-action="Index">
+            <h1>StickaTillsammans</h1>
+        </a>
+        <span></span>
     </header>
 
     <main role="main">
@@ -66,7 +96,7 @@
         </div>
         <div class="bottom-footer">
             <p>StickaTillsammans</p>
-            <partial name="_LoginPartial"/>
+            <partial name="_LoginPartial" />
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
