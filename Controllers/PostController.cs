@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ namespace StickaTillsammans.Controllers
             _hostEnvironment = hostEnvironment;
             wwwRootPath = hostEnvironment.WebRootPath;
         }
-
+        [Authorize]
         // GET: Post
         public async Task<IActionResult> Index()
         {
@@ -35,7 +36,7 @@ namespace StickaTillsammans.Controllers
             var applicationDbContext = _context.Posts.Include(p => p.Category);
             return View(await applicationDbContext.ToListAsync());
         }
-
+        [Authorize]
         // GET: Post/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -54,7 +55,24 @@ namespace StickaTillsammans.Controllers
 
             return View(post);
         }
+        public async Task<IActionResult> DetailsPublic(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var post = await _context.Posts
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return View(post);
+        }
+        [Authorize]
         // GET: Post/Create
         public IActionResult Create()
         {
@@ -67,6 +85,7 @@ namespace StickaTillsammans.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Title,Text,ImageFile,CategoryId")] Post post)
         {
             if (ModelState.IsValid)
@@ -100,7 +119,7 @@ namespace StickaTillsammans.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
-
+        [Authorize]
         // GET: Post/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -117,7 +136,7 @@ namespace StickaTillsammans.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
-
+        [Authorize]
         // POST: Post/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -180,7 +199,7 @@ namespace StickaTillsammans.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
-
+        [Authorize]
         // GET: Post/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -199,7 +218,7 @@ namespace StickaTillsammans.Controllers
 
             return View(post);
         }
-
+        [Authorize]
         // POST: Post/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

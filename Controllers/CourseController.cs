@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ namespace StickaTillsammans.Controllers
             _hostEnvironment = hostEnvironment;
             wwwRootPath = hostEnvironment.WebRootPath;
         }
-
+        [Authorize]
         // GET: Course
         public async Task<IActionResult> Index()
         {
@@ -33,7 +34,7 @@ namespace StickaTillsammans.Controllers
             var dataCourse = _context.Courses.Include(_ => _.Participants).ToListAsync();
             return View(await dataCourse);
         }
-
+        [Authorize]
         // GET: Course/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -51,6 +52,7 @@ namespace StickaTillsammans.Controllers
 
             return View(course);
         }
+
         // GET: Course/Details/5
         public async Task<IActionResult> DetailsPublic(int? id)
         {
@@ -68,7 +70,7 @@ namespace StickaTillsammans.Controllers
 
             return View(course);
         }
-
+        [Authorize]
         // GET: Course/Create
         public IActionResult Create()
         {
@@ -80,6 +82,7 @@ namespace StickaTillsammans.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Title,Date,Time,Price,Spots,Description,ImageFile")] Course course)
         {
             if (ModelState.IsValid)
@@ -113,6 +116,7 @@ namespace StickaTillsammans.Controllers
         }
 
         // GET: Course/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -127,7 +131,7 @@ namespace StickaTillsammans.Controllers
             }
             return View(course);
         }
-
+        [Authorize]
         // POST: Course/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -189,7 +193,7 @@ namespace StickaTillsammans.Controllers
             }
             return View(course);
         }
-
+        [Authorize]
         // GET: Course/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -207,7 +211,7 @@ namespace StickaTillsammans.Controllers
 
             return View(course);
         }
-
+        [Authorize]
         // POST: Course/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

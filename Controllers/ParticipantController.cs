@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,14 +19,14 @@ namespace StickaTillsammans.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         // GET: Participant
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Participants.Include(p => p.Course);
             return View(await applicationDbContext.ToListAsync());
         }
-
+        [Authorize]
         // GET: Participant/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -68,7 +69,7 @@ namespace StickaTillsammans.Controllers
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", participant.CourseId);
             return View(participant);
         }
-
+        [Authorize]
         // GET: Participant/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -91,6 +92,7 @@ namespace StickaTillsammans.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Tel,Spots,CourseId")] Participant participant)
         {
             if (id != participant.Id)
@@ -121,7 +123,7 @@ namespace StickaTillsammans.Controllers
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", participant.CourseId);
             return View(participant);
         }
-
+        [Authorize]
         // GET: Participant/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -144,6 +146,7 @@ namespace StickaTillsammans.Controllers
         // POST: Participant/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var participant = await _context.Participants.FindAsync(id);

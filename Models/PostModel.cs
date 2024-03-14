@@ -11,7 +11,7 @@ public class Post
     public string? Title { get; set; }
     [Required(ErrorMessage = "Skriv en text till inlägget.")]
     [Display(Name = "Text")]
-    [DataType(DataType.Text)]
+    [DataType(DataType.MultilineText)]
     public string? Text { get; set; }
     [Display(Name = "Bild")]
     public string? ImageName { get; set; }

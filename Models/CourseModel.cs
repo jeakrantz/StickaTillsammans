@@ -22,7 +22,7 @@ public class Course {
     [Required(ErrorMessage = "Ange antal kursplatser")]
     [Display(Name = "Kursplatser")]
     public int? Spots { get; set; }
-    [DataType(DataType.Text)]
+    [DataType(DataType.MultilineText)]
     [Display(Name = "Beskrivning")]
     public string? Description { get; set; }
     [Display(Name = "Bild")]

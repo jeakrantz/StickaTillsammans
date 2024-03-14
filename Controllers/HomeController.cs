@@ -33,6 +33,16 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Contact()
+    {
+        return View();
+    }
+
+    public async Task<IActionResult> About()
+    {
+        var dataPost = _context.Posts.Include(p => p.Category).ToListAsync();
+        return View(await dataPost);
+    }
 
     public ActionResult RedirectBuissness()
     {
