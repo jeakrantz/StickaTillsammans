@@ -39,6 +39,11 @@ header {
     border-bottom: 1px solid lightgray;
 }
 
+.offcanvas-title {
+    font-weight: 600;
+    font-size: larger;
+} 
+
 .menu-icon svg {
     font-size: 1.5em;
 }
