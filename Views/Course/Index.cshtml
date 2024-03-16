@@ -56,7 +56,7 @@
                         @Html.DisplayFor(modelItem => item.Spots)
                     </td>
                     <td>
-                        <img height="50px" src="images/@Html.DisplayFor(modelItem => item.ImageName)">
+                        <img height="50px" src="images/@Html.DisplayFor(modelItem => item.ImageName)" alt="@item.ImageName">
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen"></i> Redigera</a> |

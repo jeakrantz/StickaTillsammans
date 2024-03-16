@@ -8,7 +8,7 @@
 <div class="row-container row">
     <div class="col-sm-6 col-md-4">
         <div class="card card-large">
-            <a href="Post/PostPublic"><img src="images/HomePageLink1.webp" class="card-img-top" alt="..."></a>
+            <a href="Post/PostPublic"><img src="images/HomePageLink1.webp" class="card-img-top" alt="Stickad tröja på bord tillsammans med kaffe och anteckningsbok."></a>
             <div class="card-body">
                 <h5 class="card-title">Lär dig mer om Stickning</h5>
                 <a href="Post/PostPublic">Tips och tricks <i class="fa-solid fa-arrow-right"></i></a>
@@ -18,7 +18,7 @@
 
     <div class="col-sm-6 col-md-8">
         <div class="card card-large">
-            <a href="Course/CoursePublic"><img src="images/HomePageLink2.webp" class="card-img-top" alt="..."></a>
+            <a href="Course/CoursePublic"><img src="images/HomePageLink2.webp" class="card-img-top" alt="Virkning och en uppslagen anteckningsbok."></a>
             <div class="card-body">
                 <h5 class="card-title">Vi har workshops som passar för alla!</h5>
                 <a href="Course/CoursePublic">Se workshops <i class="fa-solid fa-arrow-right"></i></a>
@@ -43,7 +43,7 @@
         <div class="col-sm ">
             <div class="card">
                 <a href="@Url.Action("RedirectBuissness", "Home")"><img src="images/HomePageLink3.webp"
-                        class="card-img-top" alt="..."></a>
+                        class="card-img-top" alt="Tillbehör i stickning och virkning."></a>
                 <div class="card-body">
                     <a href="@Url.Action("RedirectBuissness", "Home")">
                         <h5 class="card-title">Företagsevent <i class="fa-solid fa-arrow-right"></i></h5>
@@ -54,7 +54,7 @@
         <div class="col-sm">
             <div class="card">
                 <a href="@Url.Action("RedirectGiftCard", "Home")"><img src="images/HomePageLink4.webp"
-                        class="card-img-top" alt="..."></a>
+                        class="card-img-top" alt="Hyllor fyllda med garn i olika färger."></a>
                 <div class="card-body">
                     <a href="@Url.Action("RedirectGiftCard", "Home")">
                         <h5 class="card-title">Presentkort <i class="fa-solid fa-arrow-right"></i></h5>
@@ -65,7 +65,7 @@
         <div class="col-sm">
             <div class="card">
                 <a href="@Url.Action("RedirectMembership", "Home")"><img src="images/HomePageLink5.webp"
-                        class="card-img-top" alt="..."></a>
+                        class="card-img-top" alt="Stickning i gult garn."></a>
                 <div class="card-body">
                     <a href="@Url.Action("RedirectMembership", "Home")">
                         <h5 class="card-title">Medlemskap <i class="fa-solid fa-arrow-right"></i></h5>
@@ -84,7 +84,7 @@
             <div class="col">
                 <div class="card">
                     <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id"><img
-                            src="images/@item.ImageName" class="card-img-top" alt="..."></a>
+                            src="images/@item.ImageName" class="card-img-top" alt="@item.ImageName"></a>
                     <div class="card-body">
                         <h5 class="card-title">@item.Title</h5>
                         <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id">Boka workshop <i

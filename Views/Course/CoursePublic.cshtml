@@ -11,7 +11,7 @@
         {
             <div class="col">
                 <div class="card">
-                    <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id"><img src="~/images/@item.ImageName" class="card-img-top" alt="..."></a>
+                    <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id"><img src="~/images/@item.ImageName" class="card-img-top" alt="@item.ImageName"></a>
                     <div class="card-body">
                         <h5 class="card-title">@item.Title</h5>
                         <a asp-controller="Course" asp-action="DetailsPublic" asp-route-id="@item.Id">Boka workshop <i class="fa-solid fa-arrow-right"></i></a>

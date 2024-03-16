@@ -52,7 +52,7 @@
                     @Html.DisplayNameFor(model => model.ImageName):
                 </dt>
                 <dd class="col-sm-10">
-                    <img class="img-fluid" src="/images/@Html.DisplayFor(model => model.ImageName)">
+                    <img class="img-fluid" src="/images/@Html.DisplayFor(model => model.ImageName)" alt="@Model.ImageName">
                 </dd>
             </div>
             <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen"></i>
